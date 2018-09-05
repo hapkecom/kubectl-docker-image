@@ -1,5 +1,5 @@
-talk-deploy
-===========
+kubectl-docker-image
+====================
 
 This project is to build the docker image "hapkecom/kubectl-docker-image" to run kubectl, inclusive some tools like Bash, Netcat, IP Utils (incl. Ping), curl, vim.
 
