@@ -1,0 +1,34 @@
+variables:
+  DOCKER_DRIVER: overlay2
+ 
+  #these variables are set automatically by gitlab CI:
+  #  CI_REGISTRY: registry.gitlab.com
+  #  CI_REGISTRY_IMAGE: registry.gitlab.com/xxx/kubectl-docker-image
+  #  CI_REGISTRY_PASSWORD: xxxxxxxxxxxxxxxxxxxx
+
+
+stages:
+  - docker
+  # no test needed here because the created Docker image will be used for many QA tests in other projects
+
+
+#
+# build and push a docker image
+#
+docker-build-and-push:
+  stage: docker
+  image: docker:git
+  services:
+    - docker:dind # needed to run docker CLI commands
+  script:
+    #- env | sort
+
+    #
+    # docker action
+    #
+    - docker login -u gitlab-ci-token -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build --pull  -t $CI_REGISTRY_IMAGE:latest .
+    # push all docker tags
+    - docker push $CI_REGISTRY_IMAGE
+
+
