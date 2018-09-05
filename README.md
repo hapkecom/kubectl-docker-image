@@ -38,4 +38,3 @@ How to use the Docker Image
   kubectl get namespaces
   ```
 
-
