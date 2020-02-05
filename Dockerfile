@@ -1,4 +1,5 @@
-FROM alpine:3.8
+FROM python:3.8-buster  3.8-alpine3.11
+#FROM alpine:3.8
 
 # update and install basic tools: Bash, Netcat, IP Utils (incl. Ping), curl, vim
 RUN set -x && \
