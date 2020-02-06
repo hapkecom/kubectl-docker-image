@@ -15,4 +15,9 @@ RUN set -x && \
     chmod +x /usr/local/bin/kubectl && \
     mkdir -p ~/.kube
 
+# install Google gcloud
+RUN curl -sSL https://sdk.cloud.google.com | bash
+
+ENV PATH $PATH:/root/google-cloud-sdk/bin
+
 CMD "while true; do date; kubectl get namespaces; sleep 10; done"
